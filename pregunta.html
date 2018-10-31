@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="tipo_contenido" content="text/html;" http-equiv="content-type" charset="utf-8">
+	    <title>Preguntas</title>
+        <link rel='stylesheet' type='text/css' href='estilos/style.css' />
+	    <link rel='stylesheet' 
+    		type='text/css' 
+    		media='only screen and (min-width: 530px) and (min-device-width: 481px)'
+		    href='estilos/wide.css' />
+	    <link rel='stylesheet' 
+		    type='text/css' 
+		    media='only screen and (max-width: 480px)'
+		    href='estilos/smartphone.css' />
+    </head>
+    <body>
+        <form id="pregunta" action="PHP/insertarPreguntas.php" method="POST">
+            <center>
+                <br><br><br><br>
+                <label>Introduce tu direccion de correo electronico: <input name="Correo" type="text" id="correo"></label><br>
+                <label>Enunciado de la pregunta: <input name="Enunciado" type="text" id="enunciado"></label><br>
+                <label>Respuesta correcta: <input name="respuesta" type="text" id="respuesta"></label><br>
+                <label>Respuesta inccorrecta1: <input name="respuesta1" type="text" id="respuesta1"></label><br>
+                <label>Respuesta inccorrecta2: <input name="respuesta2" type="text" id="respuesta2"></label><br>
+                <label>Respuesta inccorrecta3: <input name="respuesta3" type="text" id="respuesta3"></label><br>
+                
+                <label>Complejidad de la pregunta: </label><br>
+                
+                <input type="radio" name="complejidad" value="0" checked> 0 
+                <input type="radio" name="complejidad" value="1"> 1 
+                <input type="radio" name="complejidad" value="2"> 2 
+                <input type="radio" name="complejidad" value="3"> 3 
+                <input type="radio" name="complejidad" value="4"> 4 
+                <input type="radio" name="complejidad" value="5"> 5<br>
+                
+                <label>Tema de la pregunta: <input name="tema" type="text" id="tema"></label><br>
+                
+                <label>Imagen(opcional): <input name = "imagen" type="file" id="imagen"></label><br>
+                
+                <span><a href='layout.html'>Volver a la pagina principal</a></span>
+                
+                <input type="submit" id="enviar" value="enviar">
+                
+                
+            </center>
+        </form>
+            
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js">
+        </script>
+        <script>
+        
+            var comprobarMail = function(email){
+                var caract = new RegExp(/^([a-zA-Z0-9_.+-])+[0-9][0-9][0-9]+[\@ikasle\.ehu\.eus]+$/);
+           
+                if (caract.test(email) == false){
+                    return false;
+                }else{
+                    return true;
+                }
+            }
+           
+            var comprobar = function(){
+                
+                var correo = $("#correo").val();
+                var enunciado = $("#enunciado").val();
+                var respuesta = $("#respuesta").val();
+                var respuesta1 = $("#respuesta1").val();
+                var respuesta2 = $("#respuesta2").val();
+                var respuesta3 = $("#respuesta3").val();
+                var complejidad = $('input[name=complejidad]:checked').val();
+                var tema = $("#tema").val();
+                
+                if((correo.length==0)||(enunciado.length==0)||(respuesta.length==0)||(respuesta1.length==0)||(respuesta2.length==0)||(respuesta3.length==0)||(complejidad.length==0)||(tema.length==0)){
+                    alert("Los campos obligatorios no pueden estar vacios.")
+                    return false;
+                }
+                if(comprobarMail(correo)==false){
+                    alert("Correo mal introducido!!, recuerda que debes escribirlo de la siguiente forma: (caracteres)+3 digitos+'@ikasle.ehu.eus'")
+					return false;
+                }
+                if(enunciado.length<10){
+                    alert("La pregunta debe tener al menos 10 caracateres.")
+                    return false;
+                }
+				
+				return true;
+            }
+        
+        $("#pregunta").submit(function(){
+            return comprobar();
+        });
+        </script>
+    </body>
+</html>
