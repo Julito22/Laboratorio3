@@ -47,7 +47,7 @@
                 var correo = $("#email").val();
                 var nombre = $("#nombre").val();
                 var pass = $("#pass").val();
-				var pass2 = $("#pass").val();
+				var pass2 = $("#pass2").val();
                 
                 if((correo.length==0)||(nombre.length==0)||(pass.length==0)){
                     alert("Los campos obligatorios no pueden estar vacios.")
