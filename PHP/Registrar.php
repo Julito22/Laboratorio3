@@ -78,7 +78,7 @@
 
 	<?php
 
-		if((isset($_POST['email']))&&(isset($_POST['email']))&&(isset($_POST['email']))&&(isset($_POST['email']))){
+		if((isset($_POST['email']))&&(isset($_POST['nombre']))&&(isset($_POST['pass']))&&(isset($_POST['imagen']))){
 			
 			include "ParametrosDB.php";
 			
